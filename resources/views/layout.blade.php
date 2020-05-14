@@ -52,11 +52,26 @@
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li class="active"><a href="index.html"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-        <li><a href="reports.html"><i class="icon-list-alt"></i><span>Reports</span> </a> </li>
-        <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
-        <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
-        <li><a href="shortcodes.html"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>
+        <li class="active"><a href="index.html"><i class="icon-dashboard"></i><span>Inicio</span> </a> </li>
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-list-alt"></i><span>Reportes estrategicos</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="icons.html">Comparar ventas</a></li>
+            <li><a href="faq.html">Productos mas vendidos por categoria</a></li>
+            <li><a href="pricing.html">Productos menos vendidos por categoria</a></li>
+            <li><a href="login.html">Consolidado de ganancias</a></li>
+          </ul>
+        </li>
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-list-alt"></i><span>Reportes tacticos</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="icons.html">Productos actuales</a></li>
+            <li><a href="faq.html">10 productos mas vendidos</a></li>
+            <li><a href="pricing.html">10 productos menos vendidos</a></li>
+            <li><a href="login.html">Ventas en un rango determinado</a></li>
+          </ul>
+        </li>
+        <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>Gestión usuarios</span> </a></li>
+        <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Restauración DB</span> </a> </li>
+        <li><a href="shortcodes.html"><i class="icon-code"></i><span>Bitacora</span> </a> </li>
         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="icons.html">Icons</a></li>
