@@ -1,9 +1,9 @@
 @extends('layout')
 @section('titulo')
-  Sistema Gerencial
+  ETL
 @endsection
 @section('nombrevista')
-  Sistema Gerencial
+  ETL
 @endsection
 @section('opcionesmenu')
 

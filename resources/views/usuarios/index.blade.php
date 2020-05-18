@@ -1,9 +1,9 @@
 @extends('layout')
 @section('titulo')
-  Producto menos movimiento
+  Gestión de usuarios
 @endsection
 @section('nombrevista')
-  Productos con menos movimiento y descuento aplicar
+  Gestión de usuarios
 @endsection
 @section('opcionesmenu')
 
@@ -16,7 +16,7 @@
 				<div class="span12">
 					<center><h3>Librería el Páramo</h3></center>
 					<center><h3>Unidad administrativa</h3></center>
-					<center><h3>Productos con menos movimiento y descuento aplicar</h3></center>
+					<center><h3>Gestión de usuarios</h3></center>
 				</div>
 				<div class="widget widget-table action-table">
 					<div class="widget-header"> <i class="icon-th-list"></i>
