@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{ asset('css/bootstrap-responsive.min.css')}}" rel="stylesheet">
+<link href="{{ asset('css/datatables.min.css')}}" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
         rel="stylesheet">
 <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
@@ -71,7 +72,7 @@
         </li>
         <li><a href="{{url('/gestion_usuarios')}}"><i class="icon-group"></i><span>Gestión usuarios</span> </a></li>
         <li><a href="{{url('/etl')}}"><i class="icon-refresh"></i><span>Restauración DB</span> </a> </li>
-        <li><a href="{{url('/bitacora')}}"><i class="icon-calendar"></i><span>Bitacora</span> </a> </li>
+        <li><a href="{{route('bitacora.user')}}"><i class="icon-calendar"></i><span>Bitacora</span> </a> </li>
         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="icons.html">Icons</a></li>
@@ -119,6 +120,8 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{asset('js/jquery-1.7.2.min.js')}}"></script>
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/tablas.js')}}"></script>
 <script src="{{asset('js/excanvas.min.js')}}"></script>
 <script src="{{asset('js/chart.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bootstrap.js')}}"></script>

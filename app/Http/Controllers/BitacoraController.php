@@ -9,6 +9,8 @@ class BitacoraController extends Controller
     public function bitacora(){
     	//$bitacora = Bitacora::orderBy('id','ASC')->get();
 
-    return view('bitacora',['bitacora'=>Bitacora::orderBy('id','ASC')->get()]);
+    return view('bitacora',['bitacoras'=>Bitacora::orderBy('id','DESC')->get()]);
     }
+
+
 }

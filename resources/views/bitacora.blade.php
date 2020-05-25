@@ -19,25 +19,29 @@
 					<center><h3>Bitácora</h3></center>
 				</div>
 				<div class="widget widget-table action-table">
-					<div class="widget-header"> <i class="icon-th-list"></i>
-					</div>
 					<div class="widget-content">
-						<table class="table table-striped table-bordered">
+						<table  id="bitacora" class="table table-striped table-bordered" style="width:100%">
 							<thead>
 								<tr>
-									<th>usuario</th>
-									<th>nombre</th>
-									<th>fecha acceso</th>
-									<th>acción</th>
+									<th>Usuario</th>
+									<th>Nombre</th>
+									<th>Fecha acceso</th>
+									<th>Acción realizada</th>
 								</tr>
 							</thead>
 							<tbody>
+								@if($bitacoras)
+								@foreach($bitacoras as $bitacora)
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td>{{$bitacora->usuario}}</td>
+									<td>{{$bitacora->nombre}}</td>
+									<td>{{$bitacora->fecha_acceso}}</td>
+									<td>{{$bitacora->accion}}</td>
 								</tr>
+								@endforeach
+								@else
+								<h3>No datos</h3>
+								@endif
 							</tbody>
 						</table>
 					</div>	
@@ -48,4 +52,8 @@
 
 </div>
 
+@endsection
+@section('script')
+<script  type="text/javascript"  async defer>
+</script>
 @endsection

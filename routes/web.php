@@ -14,8 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::view('/bitacora','bitacora');
+//Route::view('/bitacora','bitacora');
+Route::get('/bitacora','BitacoraController@bitacora')->name('bitacora.user');
 Route::view('/etl','etl');
-Route::view('/productos_menos_movimiento','reportes.estrategicos.productoMenosMovimiento');
-Route::view('/productos_actuales','reportes.tacticos.productosActuales');
 Route::view('/gestion_usuarios','usuarios.index');
+
+Route::view('/productos_menos_movimiento','reportes.estrategicos.productoMenosMovimiento',['products'=>'','totalCantidad'=>'','totalVenta'=>'','pdf'=>0,'fechaD'=>0,'fechaH'=>0,'fecha'=>'']);
+Route::post('/productos_menos_movimiento_reporte','ProductosMenosDemandaController@productos')->name('productos.menosdemanda');
+
+Route::view('/productos_actuales','reportes.tacticos.productosActuales',['products'=>'','total'=>'','pdf'=>0,'fecha'=>'']);
+Route::get('/productos_actuales_reporte','ProductosActualesController@productos')->name('productos.actuales');
+Route::get('/productos_actuales_pdf','ProductosActualesController@productosPdf')->name('productos.pdf');
