@@ -19,8 +19,9 @@ Route::get('/bitacora','BitacoraController@bitacora')->name('bitacora.user');
 Route::view('/etl','etl');
 Route::view('/gestion_usuarios','usuarios.index');
 
-Route::view('/productos_menos_movimiento','reportes.estrategicos.productoMenosMovimiento',['products'=>'','totalCantidad'=>'','totalVenta'=>'','pdf'=>0,'fechaD'=>0,'fechaH'=>0,'fecha'=>'']);
-Route::post('/productos_menos_movimiento_reporte','ProductosMenosDemandaController@productos')->name('productos.menosdemanda');
+Route::view('/ganancias','reportes.estrategicos.ganancias',['totalVenta'=>'','pdf'=>0,'fechaD'=>0,'fechaH'=>0,'fecha'=>'','success'=>''])->name('ganancias.pantalla');
+Route::post('/ganancias_reporte','GananciasController@ganancias')->name('ganancias.periodo');
+Route::get('/ganancias_reporte_preview','GananciasController@gananciasPreview')->name('ganancias.preview');
 
 Route::view('/productos_actuales','reportes.tacticos.productosActuales',['products'=>'','total'=>'','pdf'=>0,'fecha'=>'']);
 Route::get('/productos_actuales_reporte','ProductosActualesController@productos')->name('productos.actuales');

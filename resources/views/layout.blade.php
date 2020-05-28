@@ -58,8 +58,8 @@
           <ul class="dropdown-menu">
             <li><a href="icons.html">Comparar ventas</a></li>
             <li><a href="faq.html">Productos mas vendidos por categoria</a></li>
-            <li><a href="{{url('/productos_menos_movimiento')}}">Productos menos vendidos por categoria</a></li>
-            <li><a href="login.html">Consolidado de ganancias</a></li>
+            <li><a href="">Productos menos vendidos por categoria</a></li>
+            <li><a href="{{url('/ganancias')}}">Consolidado de ganancias</a></li>
           </ul>
         </li>
         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-list-alt"></i><span>Reportes tacticos</span> <b class="caret"></b></a>
