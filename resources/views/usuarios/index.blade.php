@@ -19,25 +19,39 @@
 					<center><h3>Gestión de usuarios</h3></center>
 				</div>
 				<div class="widget widget-table action-table">
-					<div class="widget-header"> <i class="icon-th-list"></i>
-					</div>
+					@can('create user')
+					<div class="widget-header"><a href="{{ url('/usuarios/create')}}" class="btn btn-success">Nuevo usuario</a></div>
+					@endcan
 					<div class="widget-content">
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>usuario</th>
-									<th>nombre</th>
-									<th>fecha acceso</th>
-									<th>acción</th>
+								<th>Usuario</th>
+								<th>Nombre</th>
+								<th>Apellido</th>
+                            	<th>Correo</th>
+                            	<th>Rol</th>
+                            	<th>Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
+								@foreach ($users as $usuario)
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+								<td>{{ $usuario->username }}</td>
+								<td>{{ $usuario->name }}</td>
+								<td>{{ $usuario->surname }}</td>
+                                <td>{{ $usuario->email }}</td>
+                                <td>{{ $usuario->roles->implode('name',',')}}</td>
+                                <td>
+                                @can('update user')
+                                    <a href="{{ url('/usuarios/'.$usuario->id.'/edit')}}" class="btn btn-primary">Editar</a>
+                                @endcan
+                                @can('delete user')
+                                    @include('usuarios.delete',['usuario' => $usuario])
+                                @endcan
+                                </td>
 								</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>	

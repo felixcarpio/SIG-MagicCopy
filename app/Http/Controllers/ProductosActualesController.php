@@ -16,7 +16,6 @@ class ProductosActualesController extends Controller
     	}
 
     	return view('reportes.tacticos.productosActuales',compact('products','total'));
-    	}
-
     }
+
 }
