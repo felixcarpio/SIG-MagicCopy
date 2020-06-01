@@ -17,7 +17,7 @@ class CreatePedidosTable extends Migration
             $table->bigIncrements('id');
             $table->string('codigo_pedido',10);
             $table->date('fecha_solicitud');
-            $table->string('comentario_pedido',50);
+            $table->string('comentario_pedido',1000);
             $table->timestamps();
         });
     }

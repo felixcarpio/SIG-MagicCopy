@@ -17,9 +17,10 @@ Route::get('/', function () {
 //Route::view('/bitacora','bitacora');
 Route::get('/bitacora','BitacoraController@bitacora')->name('bitacora.user');
 Route::view('/etl','etl');
+Route::post('/etl','ETLController@etl');
 Route::view('/gestion_usuarios','usuarios.index');
 
-Route::view('/ganancias','reportes.estrategicos.ganancias',['totalVenta'=>'','pdf'=>0,'fechaD'=>0,'fechaH'=>0,'fecha'=>'','success'=>''])->name('ganancias.pantalla');
+Route::view('/ganancias','reportes.estrategicos.ganancias',['pdf'=>0,'desde'=>0,'hasta'=>0,'fecha'=>'','success'=>''])->name('ganancias.pantalla');
 Route::post('/ganancias_reporte','GananciasController@ganancias')->name('ganancias.periodo');
 Route::get('/ganancias_reporte_preview','GananciasController@gananciasPreview')->name('ganancias.preview');
 

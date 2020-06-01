@@ -15,11 +15,11 @@ class CreateEntidadesTable extends Migration
     {
         Schema::create('entidades', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre',15);
+            $table->string('nombre',50);
             $table->string('nit',15);
             $table->string('numero_registro',15);
-            $table->string('direccion',50);
-            $table->string('giro',20);
+            $table->string('direccion',150);
+            $table->string('giro',50);
             $table->timestamps();
         });
     }

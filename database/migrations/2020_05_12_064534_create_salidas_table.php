@@ -17,7 +17,7 @@ class CreateSalidasTable extends Migration
             $table->bigIncrements('id');
             $table->date('fecha_emision');
             $table->float('total',10,2);
-            $table->string('comentario',50);
+            $table->string('comentario',500);
             $table->string('correlativo_factura',10);
             $table->string('tipo_factura',10);
             $table->float('costo',10,2);

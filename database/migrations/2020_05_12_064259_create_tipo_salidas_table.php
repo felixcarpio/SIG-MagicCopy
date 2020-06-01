@@ -16,7 +16,7 @@ class CreateTipoSalidasTable extends Migration
         Schema::create('tipo_salidas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
-            $table->string('descripcion',100);
+            $table->string('descripcion',500);
             $table->timestamps();
         });
     }
