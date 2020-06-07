@@ -13,7 +13,7 @@ class CreateDetallesTable extends Migration
      */
     public function up()
     {
-        Schema::create('detalles', function (Blueprint $table) {
+        Schema::create('tbl_detalle', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->float('total_detalle',10,2);
             $table->float('total_con_desc',10,2);
@@ -22,9 +22,9 @@ class CreateDetallesTable extends Migration
             $table->string('comentario',50);
             $table->float('costo',10,2);
             $table->unsignedBigInteger('pedido_id');
-            $table->foreign('pedido_id')->references('id')->on('pedidos');
+            $table->foreign('pedido_id')->references('id')->on('tbl_pedido');
             $table->unsignedBigInteger('salida_id');
-            $table->foreign('salida_id')->references('id')->on('salidas');
+            $table->foreign('salida_id')->references('id')->on('tbl_salida');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateDetallesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detalles');
+        Schema::dropIfExists('tbl_detalle');
     }
 }

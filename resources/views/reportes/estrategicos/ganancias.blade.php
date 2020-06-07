@@ -42,13 +42,13 @@ Ganancias generadas
 						<div class="span4">
 							<div class="form-group">
 								<h3 style="display: inline-block; width: 80px;">Desde:</h3>
-								<input type="date"  class="form-control" name="Desde">
+								<input type="date" value="{{$desde}}" class="form-control" name="Desde">
 							</div>
 						</div>
 						<div class="span4">
 							<div class="form-group">
 								<h3 style="display: inline-block; width: 80px;">Hasta:</h3>
-								<input type="date"  class="form-control" name="Hasta">
+								<input type="date" value="{{$hasta}}" class="form-control" name="Hasta">
 							</div>
 						</div>
 					</form>
@@ -77,10 +77,18 @@ Ganancias generadas
 									<th width="30%">Monto</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody> 
 								<tr>
-									<td></td>
-									<td></td>
+									<td>Ingresos</td>
+									<td>{{$ingreso}}</td>
+								</tr>
+								<tr>
+									<td>Egresos</td>
+									<td>{{$egreso}}</td>
+								</tr>
+								<tr>
+									<td><strong>Total</strong></td>
+									<td><strong>{{$total}}</strong></td>
 								</tr>
 							</tbody>
 						</table>

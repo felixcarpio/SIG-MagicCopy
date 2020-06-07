@@ -13,7 +13,7 @@ class CreateEntidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('entidades', function (Blueprint $table) {
+        Schema::create('tbl_entidad', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
             $table->string('nit',15);
@@ -31,6 +31,6 @@ class CreateEntidadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entidades');
+        Schema::dropIfExists('tbl_entidad');
     }
 }

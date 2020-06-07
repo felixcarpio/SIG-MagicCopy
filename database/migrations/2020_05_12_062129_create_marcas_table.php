@@ -13,7 +13,7 @@ class CreateMarcasTable extends Migration
      */
     public function up()
     {
-        Schema::create('marcas', function (Blueprint $table) {
+        Schema::create('tbl_marca', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_marca',25);
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateMarcasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('marcas');
+        Schema::dropIfExists('tbl_marca');
     }
 }

@@ -20,7 +20,7 @@ Route::view('/etl','etl');
 Route::post('/etl','ETLController@etl');
 Route::view('/gestion_usuarios','usuarios.index');
 
-Route::view('/ganancias','reportes.estrategicos.ganancias',['pdf'=>0,'desde'=>0,'hasta'=>0,'fecha'=>'','success'=>''])->name('ganancias.pantalla');
+Route::view('/ganancias','reportes.estrategicos.ganancias',['pdf'=>0,'desde'=>'','hasta'=>'','fecha'=>'','success'=>'','ingreso'=>0.00,'egreso'=>0.00,'total'=>0.00])->name('ganancias.pantalla');
 Route::post('/ganancias_reporte','GananciasController@ganancias')->name('ganancias.periodo');
 Route::get('/ganancias_reporte_preview','GananciasController@gananciasPreview')->name('ganancias.preview');
 

@@ -13,7 +13,7 @@ class CreatePedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
+        Schema::create('tbl_pedido', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('codigo_pedido',10);
             $table->date('fecha_solicitud');
@@ -29,6 +29,6 @@ class CreatePedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('tbl_pedido');
     }
 }

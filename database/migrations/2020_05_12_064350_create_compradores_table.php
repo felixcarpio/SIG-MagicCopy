@@ -13,7 +13,7 @@ class CreateCompradoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('compradores', function (Blueprint $table) {
+        Schema::create('tbl_comprador', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
             $table->string('email',50);
@@ -33,6 +33,6 @@ class CreateCompradoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compradores');
+        Schema::dropIfExists('tbl_comprador');
     }
 }

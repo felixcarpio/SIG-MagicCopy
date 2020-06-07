@@ -13,12 +13,12 @@ class CreateSalidasCompradoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('salidas_compradores', function (Blueprint $table) {
+        Schema::create('tbl_salida_comprador', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('salida_id');
-            $table->foreign('salida_id')->references('id')->on('salidas');
+            $table->foreign('salida_id')->references('id')->on('tbl_salida');
             $table->unsignedBigInteger('comprador_id');
-            $table->foreign('comprador_id')->references('id')->on('compradores');
+            $table->foreign('comprador_id')->references('id')->on('tbl_comprador');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSalidasCompradoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salidas_compradores');
+        Schema::dropIfExists('tbl_salida_comprador');
     }
 }

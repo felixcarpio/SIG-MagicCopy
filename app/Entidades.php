@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entidades extends Model
 {
-    protected $table ='entidades';
+    protected $table ='tbl_entidad';
 
     public function salidas(){
       return $this->belongsToMany('App\Salidas');

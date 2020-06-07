@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Productos;
 use App\Salidas;
+use App\ProductosPedidos;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use App\Http\Services\BitacoraService;
-
+use Illuminate\Support\Facades\DB;
 class GananciasController extends Controller
 {
 	protected $global_desde;
@@ -54,16 +55,27 @@ class GananciasController extends Controller
 
     public function ingresoEgresos($desde,$hasta){
     	$datos = array();
-    	$salidas = Salidas::whereBetween('fecha_emision',[$desde,$hasta])->get();
-    	foreach($salidas as $salida){
-    		if($salida->tipo_factura == 'IvaCredito'){
-    			$datos[0] = $salida->total;
-    		}elseif ($salida->tipo_factura == 'IvaDebito'){
-    			$datos[1] = $salida->total;
-    		}
-    	}
+    	//$salidas = Salidas::whereBetween('fecha_emision',[$desde,$hasta])->get();
+       // $pedidos = ProductosPedidos::whereBetween('fecha_recibido',[$desde,$hasta])->get();
+        $datos[1] = DB::table('salidas')->whereBetween('fecha_emision',[$desde,$hasta])->sum('total');
+        $datos[0] = DB::select(DB::raw("select sum(costo_unitario*cantidad_ordenada) from tbl_producto_pedido where fecha_recibido BETWEEN desde and hasta"), array('desde'=>$desde,'hasta'=>$hasta));
+    
     	$datos[2] = $datos[1] - $datos[0];
     	return $datos;
+    }
+
+    public function gananciasPDF(){
+        $desde= $this->global_desde;
+        $hasta = $this->global_hasta;
+        $datos = $this->ingresoEgresos($desde,$hasta);
+        $egreso = $datos[0];
+        $ingreso = $datos[1];
+        $total = $datos[2];
+        $fecha = Carbon::parse(Carbon::now())->format('d/m/Y');
+        $pdf = PDF::loadView('reportes.estrategicos.pdf.gananciasPDF',compact('ingreso','egreso','total','fecha','desde','hasta'));
+        //Llamando servicio de bitacora para crear registro
+        $this->bitacora_service->bitacoraPost("PDF generado de Informe de ganancias generadas");
+        return $pdf->download('ganancias-generadas.pdf');
     }
 
 

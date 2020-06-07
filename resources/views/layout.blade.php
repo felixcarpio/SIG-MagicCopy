@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+@yield('meta')
 <title>@yield('titulo')</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -71,8 +72,10 @@
           </ul>
         </li>
         <li><a href="{{url('/gestion_usuarios')}}"><i class="icon-group"></i><span>Gestión usuarios</span> </a></li>
-        <li><a href="{{url('/etl')}}"><i class="icon-refresh"></i><span>Restauración DB</span> </a> </li>
+        <li><a href="#"><i class="icon-refresh"></i><span>Restauración DB</span> </a> </li>
         <li><a href="{{route('bitacora.user')}}"><i class="icon-calendar"></i><span>Bitacora</span> </a> </li>
+         <li><a href="{{url('/etl')}}"><i class="icon-refresh"></i><span>ETL</span> </a> </li>
+
         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="icons.html">Icons</a></li>
