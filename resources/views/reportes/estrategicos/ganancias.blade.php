@@ -37,7 +37,7 @@ Ganancias generadas
 				</div>
 				@endif
 				<div class="span12">
-					<form action="{{route('ganancias.periodo')}}" method="POST" id="form_fechas">
+					<form action="{{route('ganancias.periodo')}}" method="GET" id="form_fechas">
 						@csrf
 						<div class="span4">
 							<div class="form-group">
@@ -60,7 +60,7 @@ Ganancias generadas
 					@if($pdf == 0)
 					<button  disabled="" class="btn btn-danger">Imprimir PDF</button>
 					@else
-					<a href="{{route('productos.pdf')}}" class="btn btn-danger">Imprimir PDF</a>
+					<a href="{{route('ganancias.pdf',['desde'=>$desde,'hasta'=>$hasta])}}" class="btn btn-danger">Imprimir PDF</a>
 					@endif
 				</div>
 				<div class="span3">
@@ -80,15 +80,15 @@ Ganancias generadas
 							<tbody> 
 								<tr>
 									<td>Ingresos</td>
-									<td>{{$ingreso}}</td>
+									<td>${{$ingreso}}</td>
 								</tr>
 								<tr>
 									<td>Egresos</td>
-									<td>{{$egreso}}</td>
+									<td>${{$egreso}}</td>
 								</tr>
 								<tr>
 									<td><strong>Total</strong></td>
-									<td><strong>{{$total}}</strong></td>
+									<td><strong>${{$total}}</strong></td>
 								</tr>
 							</tbody>
 						</table>

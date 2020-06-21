@@ -60,14 +60,16 @@
           });
            $.ajax({
               type:'POST',
-              url:'/etl',
+              url:'/etl/run',
               data:'',
               success:function(data) {
+                console.log(data)
                  $("#msg").html(data.msg);
                  $("#msg").attr('class','alert alert-info col-sm-10');
                  $('#btnGenETL').removeAttr('disabled');
               },
               error:function(data){
+                console.log(data)
                 $("#msg").html(data.responseJSON['msg']);
                 $("#msg").attr('class', 'alert alert-danger col-sm-10');
                 $('#btnGenETL').removeAttr('disabled');

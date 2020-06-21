@@ -28,6 +28,14 @@
 		  background-color: white;
 		  color: black;
 		}
+
+		#fechas{
+			border-collapse: collapse;
+  			border: 0px solid black;
+		}
+
+		
+
 </head>
 <body>
 	<div>
@@ -39,8 +47,15 @@
 		<h3>Fecha de generación:{{$fecha}}</h3>
 	</div>
 	<div id="columna">
-		<h3 style="display: inline-block; width: 80px;">Desde:{{$desde}}</h3>
-		<h3 style="display: inline-block; width: 80px;">Hasta:{{$hasta}}</h3>
+		<table id="fechas">
+		<thead>
+			<tr>
+				<th width="40%"><h3 id="desde">Desde:{{$desde}}</h3></th>
+				<th width="20%"><h3>     </h3></th>
+				<th width="60%"><h3 id="hasta">Hasta:{{$hasta}}</h3></th>
+			</tr>
+		</thead>
+	</table>
 	</div>
 	<table id="customers">
 		<thead>
@@ -52,15 +67,15 @@
 		<tbody>
 			<tr>
 				<td>Ingresos</td>
-				<td>{{$ingreso}}</td>
+				<td>${{$ingreso}}</td>
 			</tr>
 			<tr>
 				<td>Egresos</td>
-				<td>{{$egreso}}</td>
+				<td>${{$egreso}}</td>
 			</tr>
 			<tr>
 				<td><strong>Total</strong></td>
-				<td><strong>{{$total}}</strong></td>
+				<td><strong>${{$total}}</strong></td>
 			</tr>
 		</tbody>
 	</table>
