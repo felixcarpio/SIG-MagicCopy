@@ -22,7 +22,7 @@
 <body>
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
-      <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">@yield('nombrevista') </a>
+      <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="{{ url('/') }}">Sistema Gerencial</a>
         <div class="nav-collapse">
           <ul class="nav pull-right">
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Cuenta <b class="caret"></b></a>
@@ -34,7 +34,8 @@
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon-user"></i>{{ Auth::user()->username }}<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="javascript:;">Perfil</a></li>
+                <li>Nombres: {{ Auth::user()->name }}</li>
+                <li>Apellidos: {{ Auth::user()->surname }}</li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">{{ __('Cerrar Sesion') }}</a> 
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -71,7 +72,7 @@
           <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-list-alt"></i><span>Reportes tacticos</span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="{{url('/productos_actuales')}}">Productos actuales</a></li>
-              <li><a href="faq.html">10 productos mas vendidos</a></li>
+              <li><a href="{{url('/10_productos_mas_vendidos')}}">10 productos mas vendidos</a></li>
               <li><a href="pricing.html">10 productos menos vendidos</a></li>
               <li><a href="login.html">Ventas en un rango determinado</a></li>
             </ul>

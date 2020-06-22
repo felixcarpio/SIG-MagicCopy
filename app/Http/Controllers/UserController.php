@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -22,7 +23,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('id','DESC')->paginate(5);
+        
         return view('usuarios.index',compact('users'));
     }
 
@@ -41,10 +43,15 @@ class UserController extends Controller
         $usuario->email = $request->email;
         $usuario->password = bcrypt($request->password);
 
-        if($usuario->save()){
-            //asignar el rol
-            $usuario->assignRole($request->rol);
-            return redirect('/usuarios');
+
+        try{
+            if($usuario->save()){
+                //asignar el rol
+                $usuario->assignRole($request->rol);
+            }
+            return Redirect::to("/usuarios")->with("success","Usuario guardado con éxito");
+        } catch  (\Illuminate\Database\QueryException $e){
+            return Redirect::to("/usuarios")->with("danger","No se pudo guardar, el correo o usuario ya existe");
         }
     }
 
@@ -65,10 +72,16 @@ class UserController extends Controller
         if($request->password != null){
             $usuario->password = bcrypt($request->password);
         }
-        $usuario->syncRoles($request->rol);
-        $usuario->save();
-
-        return redirect('/usuarios');
+        
+        try{
+            if($usuario->save()){
+                //asignar el rol
+                $usuario->syncRoles($request->rol);
+            }
+            return Redirect::to("/usuarios")->with("success","Usuario actualizado con éxito");
+        } catch  (\Illuminate\Database\QueryException $e){
+            return Redirect::to("/usuarios")->with("danger","No se pudo actualizar, el correo o usuario ya existe");
+        }
     }
 
     public function destroy($id)

@@ -26,36 +26,38 @@
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-								<th>Usuario</th>
-								<th>Nombre</th>
-								<th>Apellido</th>
-                            	<th>Correo</th>
-                            	<th>Rol</th>
-                            	<th>Acciones</th>
+									<th>Usuario</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+									<th>Correo</th>
+									<th>Rol</th>
+									<th>Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach ($users as $usuario)
-								<tr>
-								<td>{{ $usuario->username }}</td>
-								<td>{{ $usuario->name }}</td>
-								<td>{{ $usuario->surname }}</td>
-                                <td>{{ $usuario->email }}</td>
-                                <td>{{ $usuario->roles->implode('name',',')}}</td>
-                                <td>
-                                @can('update user')
-                                    <a href="{{ url('/usuarios/'.$usuario->id.'/edit')}}" class="btn btn-primary">Editar</a>
-                                @endcan
-                                @can('delete user')
-                                    @include('usuarios.delete',['usuario' => $usuario])
-                                @endcan
-                                </td>
-								</tr>
+									<tr>
+										<td>{{ $usuario->username }}</td>
+										<td>{{ $usuario->name }}</td>
+										<td>{{ $usuario->surname }}</td>
+										<td>{{ $usuario->email }}</td>
+										<td>{{ $usuario->roles->implode('name',',')}}</td>
+										<td>
+										@can('update user')
+											<a href="{{ url('/usuarios/'.$usuario->id.'/edit')}}" class="btn btn-primary">Editar</a>
+										@endcan
+										@can('delete user')
+											@include('usuarios.delete',['usuario' => $usuario])
+										@endcan
+										</td>
+									</tr>
 								@endforeach
 							</tbody>
 						</table>
+						
 					</div>	
 				</div>
+				{{$users->render()}}
 			</div>
 		</div>
 	</div>

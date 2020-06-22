@@ -10,25 +10,34 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('/auth/login');
+Route::group(['middleware' => ['guest']], function () {
+    Auth::routes();
+    Route::get('/', function () {
+        return view('/auth/login');
+    });
 });
 
-Route::view('/etl','etl');
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+    Route::view('/etl','etl');
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware'=> ['role:gerente']], function(){
-Route::view('/productos_menos_movimiento','reportes.estrategicos.productoMenosMovimiento');
-});
+    //incluir todas las direcciones de reportes estrategicos
+    Route::group(['middleware'=> ['role:gerente']], function(){
+        Route::view('/productos_menos_movimiento','reportes.estrategicos.productoMenosMovimiento');
+    });
 
-Route::group(['middleware'=> ['role:subgerente']], function(){
-Route::view('/productos_actuales','reportes.tacticos.productosActuales');
-});
+    //incluir todas las direcciones de reportes tacticos
+    Route::group(['middleware'=> ['role:subgerente|gerente']], function(){
+        Route::view('/productos_actuales','reportes.tacticos.productosActuales');
+        Route::view('/10_productos_mas_vendidos','reportes.tacticos.productosMasVendidos');
+        Route::resource('/productos_mas_vendidos','ProductosMasVendidosController');
+    });
 
-Route::group(['middleware'=> ['role:administrador']], function(){
-    Route::resource('usuarios', 'UserController');
-    Route::view('/gestion_usuarios','usuarios.index');
-    Route::view('/bitacora','bitacora');
+    Route::group(['middleware'=> ['role:administrador']], function(){
+        Route::resource('usuarios', 'UserController');
+        Route::view('/gestion_usuarios','usuarios.index');
+        Route::resource('/bitacora','BitacoraController');
+    });
+
 });

@@ -15,10 +15,10 @@ class UsersTableSeeder extends Seeder
         // usuario con el rol administrador
         $admin = User::create([
             'username'=>'admin',
-            'name'=>'nombre',
-            'surname'=>'apellido',
+            'name'=>'nombre1 nombre2',
+            'surname'=>'apellido1 apellido2',
             'email'=>'admin@gmail.com',
-            'password'=>bcrypt('123456')
+            'password'=>bcrypt('12345678')
         ]);
 
         $admin->assignRole('administrador');

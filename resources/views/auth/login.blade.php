@@ -1,11 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.contenido')
+
+@section('titulo')
+ Sistema Gerencial
+@endsection
 
 @section('content')
+
 <div class="container">
+<center><title class="login100-form-title p-b-41">Iniciar Sesion</title></center>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card">
-                <div class="card-header">{{ __('Iniciar Sesion') }}</div>
+                
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -16,7 +22,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                                
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,8 +46,8 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="container-login100-form-btn m-t-32">
+                                <button type="submit" class="login100-form-btn">
                                     {{ __('Ingresar') }}
                                 </button>
 

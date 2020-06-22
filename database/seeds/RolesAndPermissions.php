@@ -58,11 +58,17 @@ class RolesAndPermissions extends Seeder
         $role->givePermissionTo('read rep-estrategico');
         $role->givePermissionTo('update rep-estrategico');
         $role->givePermissionTo('delete rep-estrategico');
+        $role->givePermissionTo('create rep-tactico');
+        $role->givePermissionTo('read rep-tactico');
+        $role->givePermissionTo('update rep-tactico');
+        $role->givePermissionTo('delete rep-tactico');
 
         $role = Role::create(['name' => 'subgerente']);
         $role->givePermissionTo('create rep-tactico');
         $role->givePermissionTo('read rep-tactico');
         $role->givePermissionTo('update rep-tactico');
         $role->givePermissionTo('delete rep-tactico');
+
+        $role = Role::create(['name'=> 'asesor de ventas']);
     }
 }
