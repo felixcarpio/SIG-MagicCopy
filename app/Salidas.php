@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Salidas extends Model
 {
-    protected $table ='salidas';
+    protected $table ='tbl_salida';
 
     public function detalles(){
       return $this->hasMany('App\Detalles');

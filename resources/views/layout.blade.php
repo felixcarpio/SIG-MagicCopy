@@ -2,19 +2,22 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>@yield('titulo')</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{ asset('css/bootstrap-responsive.min.css')}}" rel="stylesheet">
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
-  <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/pages/dashboard.css') }}" rel="stylesheet">
-  <link href="{{asset('css/pages/signin.css')}}" rel="stylesheet" type="text/css">
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
+<meta charset="utf-8">
+@yield('meta')
+<title>@yield('titulo')</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{ asset('css/bootstrap-responsive.min.css')}}" rel="stylesheet">
+<link href="{{ asset('css/datatables.min.css')}}" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">
+<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('css/pages/dashboard.css') }}" rel="stylesheet">
+<link href="{{asset('css/pages/signin.css')}}" rel="stylesheet" type="text/css">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
@@ -63,8 +66,8 @@
             <ul class="dropdown-menu">
               <li><a href="icons.html">Comparar ventas</a></li>
               <li><a href="faq.html">Productos mas vendidos por categoria</a></li>
-              <li><a href="{{url('/productos_menos_movimiento')}}">Productos menos vendidos por categoria</a></li>
-              <li><a href="login.html">Consolidado de ganancias</a></li>
+              <li><a href="">Productos menos vendidos por categoria</a></li>
+              <li><a href="{{url('/ganancias')}}">Consolidado de ganancias</a></li>
             </ul>
           </li>
           @endcan
@@ -81,10 +84,12 @@
           @can('read users')
           <li><a href="{{ url('usuarios') }}"><i class="icon-group"></i><span>Gestión usuarios</span> </a></li>
           @endcan
-          <li><a href="{{url('/etl')}}"><i class="icon-refresh"></i><span>Restauración DB</span> </a> </li>
+          <li><a href=""><i class="icon-refresh"></i><span>Restauración DB</span> </a> </li>
           @can('read bitacora')
-          <li><a href="{{url('/bitacora')}}"><i class="icon-calendar"></i><span>Bitacora</span> </a> </li>
+          <li><a href="{{route('bitacora.user')}}"><i class="icon-calendar"></i><span>Bitacora</span> </a> </li>
           @endcan
+          <li><a href="{{url('/etl')}}"><i class="icon-refresh"></i><span>ETL</span> </a> </li>
+
           <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="icons.html">Icons</a></li>
@@ -98,8 +103,7 @@
           @yield('opcionesmenu')
         </ul>
       </div>
-      <!-- /container -->
-    </div>
+    </div>  
     <!-- /subnavbar-inner -->
   </div>
   <!-- /subnavbar -->
@@ -130,15 +134,14 @@
   <!-- /footer -->
   <!-- Le javascript
 ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="{{asset('js/jquery-1.7.2.min.js')}}"></script>
-  <script src="{{asset('js/excanvas.min.js')}}"></script>
-  <script src="{{asset('js/chart.min.js')}}" type="text/javascript"></script>
-  <script src="{{asset('js/bootstrap.js')}}"></script>
-  <script language="javascript" type="text/javascript" src="{{asset('js/full-calendar/fullcalendar.min.js')}}"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{{asset('js/jquery-1.7.2.min.js')}}"></script>
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/tablas.js')}}"></script>
+<script src="{{asset('js/excanvas.min.js')}}"></script>
+<script src="{{asset('js/chart.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/bootstrap.js')}}"></script>
+<script language="javascript" type="text/javascript" src="{{asset('js/full-calendar/fullcalendar.min.js')}}"></script>
 
-  <script src="{{asset('js/base.js')}}"></script>
-  <script src="{{asset('js/signin.js')}}"></script>
-  @yield('script')
 
 </html>

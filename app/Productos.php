@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Productos extends Model
 {
-  protected $table ='productos';
+  protected $table ='tbl_producto';
 
     public function marca(){
       return $this->hasOne('App\Marcas');
@@ -21,6 +21,6 @@ class Productos extends Model
     }
 
     public function pedidos(){
-      return $this->belongsToMany('App\Pedidos');
+      return $this->belongsToMany(Pedidos::class,'productos_pedidos');
     }
 }

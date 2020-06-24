@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Detalles extends Model
 {
-    protected $table = 'detalles';
+    protected $table = 'tbl_detalle';
 
     public function salida(){
       return $this->belongsTo('App\Salidas');

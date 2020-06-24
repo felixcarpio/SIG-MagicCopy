@@ -13,12 +13,17 @@ class CreateProductosPedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('productos_pedidos', function (Blueprint $table) {
+        Schema::create('tbl_producto_pedido', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('producto_id');
-            $table->foreign('producto_id')->references('id')->on('productos');
+            $table->foreign('producto_id')->references('id')->on('tbl_producto');
             $table->unsignedBigInteger('pedido_id');
-            $table->foreign('pedido_id')->references('id')->on('pedidos');
+            $table->foreign('pedido_id')->references('id')->on('tbl_pedido');
+            $table->integer('cantidad_ordenada')->nullable(True);
+            $table->float('costo_unitario',8,2)->nullable(True);
+            $table->date('fecha_recibido')->nullable($value = true);
+            $table->integer('existencias')->nullable(True);
+            $table->integer('salidas')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +35,6 @@ class CreateProductosPedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos_pedidos');
+        Schema::dropIfExists('tbl_producto_pedido');
     }
 }

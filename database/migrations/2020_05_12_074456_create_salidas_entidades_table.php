@@ -13,12 +13,12 @@ class CreateSalidasEntidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('salidas_entidades', function (Blueprint $table) {
+        Schema::create('tbl_salida_entidad', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('salida_id');
-            $table->foreign('salida_id')->references('id')->on('salidas');
+            $table->foreign('salida_id')->references('id')->on('tbl_salida');
             $table->unsignedBigInteger('entidad_id');
-            $table->foreign('entidad_id')->references('id')->on('entidades');
+            $table->foreign('entidad_id')->references('id')->on('tbl_entidad');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSalidasEntidadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salidas_entidades');
+        Schema::dropIfExists('tbl_salida_entidad');
     }
 }

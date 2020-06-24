@@ -13,12 +13,12 @@ class CreateProductosProveedoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('productos_proveedores', function (Blueprint $table) {
+        Schema::create('tbl_producto_proveedor', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('producto_id');
-            $table->foreign('producto_id')->references('id')->on('productos');
+            $table->foreign('producto_id')->references('id')->on('tbl_producto');
             $table->unsignedBigInteger('proveedor_id');
-            $table->foreign('proveedor_id')->references('id')->on('proveedores');
+            $table->foreign('proveedor_id')->references('id')->on('tbl_proveedor');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateProductosProveedoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos_proveedores');
+        Schema::dropIfExists('tbl_producto_proveedor');
     }
 }

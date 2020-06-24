@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+//use App\Http\Services\BitacoraService;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -14,7 +14,15 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        '\App\Console\Commands\EtlAuto'
     ];
+
+     // private $bitacora_service;
+
+     // public function __construct(BitacoraService $bitacora_service)
+     // {
+     //     $this->bitacora_service = $bitacora_service;
+     // }
 
     /**
      * Define the application's command schedule.
@@ -26,6 +34,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        //todos los dias a la media noche
+        $schedule->command('elt:auto')->dailyAt('00:00');
+       // $this->bitacora_service->bitacoraPost("ETL ejecutado de forma automática");
     }
 
     /**

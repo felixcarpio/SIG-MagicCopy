@@ -85,6 +85,26 @@ return [
             'prefix_indexes' => true,
         ],
 
+        // conexión a la base de datos transaccional
+
+         'STDB'  => [
+          'driver'     => 'mysql',
+          'host'       => env('STDB_HOST', '127.0.0.1'),
+          'database'   => env('STDB_DATABASE', 'forge'),
+          'username'   => env('STDB_USERNAME', 'forge'),
+          'password'   => env('STDB_PASSWORD', ''),
+          'charset'    => 'utf8',
+          'collation'  => 'utf8_unicode_ci',
+          'prefix'     => '',
+          'prefix_indexes' => true,
+          'strict'     => false,
+          'engine'     => null,
+          'options'    => extension_loaded('pdo_mysql') ? array_filter([
+              PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+          ]) : [],
+        ],
+
+
     ],
 
     /*

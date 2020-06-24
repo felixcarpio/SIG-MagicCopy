@@ -13,10 +13,10 @@ class CreateTipoSalidasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_salidas', function (Blueprint $table) {
+        Schema::create('tbl_tipo_salida', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
-            $table->string('descripcion',100);
+            $table->string('descripcion',500);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateTipoSalidasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_salidas');
+        Schema::dropIfExists('tbl_tipo_salida');
     }
 }
