@@ -33,13 +33,15 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     //incluir todas las direcciones de reportes tacticos
-    Route::group(['middleware'=> ['role:subgerente|gerente']], function(){
-        Route::view('/productos_actuales','reportes.tacticos.productosActuales');
-        Route::view('/10_productos_mas_vendidos','reportes.tacticos.productosMasVendidos');
-        Route::resource('/productos_mas_vendidos','ProductosMasVendidosController');
+    Route::group(['middleware'=> ['role:subgerente|gerente|asesor de ventas']], function(){
         Route::view('/productos_actuales','reportes.tacticos.productosActuales',['products'=>'','total'=>'','pdf'=>0,'fecha'=>'']);
         Route::get('/productos_actuales_reporte','ProductosActualesController@productos')->name('productos.actuales');
         Route::get('/productos_actuales_pdf','ProductosActualesController@productosPdf')->name('productos.pdf');
+        Route::view('/10_productos_mas_vendidos','reportes.tacticos.productosMasVendidos',['desde'=>'','hasta'=>'','nombre'=>'','codigo'=>'','pdf'=>0,'cantidad'=>'','id'=>'','total'=>'']);
+        Route::resource('/productos_mas_vendidos','ProductosMasVendidosController');
+        Route::get('/productos_mas_vendidos_reporte','ProductosMasVendidosController@llenarTabla')->name('productosmasvendidos.llenarTabla');
+        Route::get('/productos_mas_vendidos_pdf','ProductosMasVendidosController@reportePdf')->name('reportes.pdf');
+        
     });
 
     Route::group(['middleware'=> ['role:administrador']], function(){
