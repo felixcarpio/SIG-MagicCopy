@@ -44,6 +44,9 @@ class RolesAndPermissions extends Seeder
 
         Permission::create(['name' => 'read bitacora']);
 
+        Permission::create(['name'=> 'read etl']);
+        Permission::create(['name'=> 'read restauracionDB']);
+
         // create roles and assign created permissions
 
         $role = Role::create(['name' => 'administrador']);
@@ -52,6 +55,8 @@ class RolesAndPermissions extends Seeder
         $role->givePermissionTo('update user');
         $role->givePermissionTo('delete user');
         $role->givePermissionTo('read bitacora');
+        $role->givePermissionTo('read etl');
+        $role->givePermissionTo('read restauracionDB');
 
         $role = Role::create(['name' => 'gerente']);
         $role->givePermissionTo('create rep-estrategico');

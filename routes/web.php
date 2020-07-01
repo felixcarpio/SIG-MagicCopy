@@ -18,8 +18,6 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::view('/etl','etl');
-    Route::post('/etl/run','ETLController@etl');
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -50,6 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/bitacora','BitacoraController');
         //Route::view('/bitacora','bitacora');
         Route::get('/bitacora','BitacoraController@bitacora')->name('bitacora.user');
+        Route::view('/etl','etl');
+        Route::post('/etl/run','ETLController@etl');
     });
 
 });

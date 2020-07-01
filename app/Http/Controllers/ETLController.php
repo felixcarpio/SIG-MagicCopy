@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Marquine\Etl\Etl;
 use Artisan;
 use App\Http\Services\BitacoraService;
+use App\Bitacora;
+use Carbon\Carbon;
+use Auth;
 class ETLController extends Controller
 {
 	private $bitacora_service;
@@ -16,11 +19,8 @@ class ETLController extends Controller
     }
 	
 	public function etl(){
-		//var_dump("entro a metodo de controller etl");
 		Artisan::call('etl:auto');
-	//	var_dump("return a metodo de controller etl");
 		$arr = explode('|', Artisan::output());
-	//	var_dump($arr);
 		$msg = $arr[0];
 		$status =(Int) $arr[1];
 		$this->bitacora_service->bitacoraPost("ETL ejecutado de forma manual");

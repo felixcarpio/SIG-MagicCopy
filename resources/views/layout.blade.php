@@ -28,12 +28,7 @@
       <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="{{ url('/') }}">Sistema Gerencial</a>
         <div class="nav-collapse">
           <ul class="nav pull-right">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i> Cuenta <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:;">Configuraciones</a></li>
-                <li><a href="javascript:;">Ayuda</a></li>
-              </ul>
-            </li>
+            
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon-user"></i>{{ Auth::user()->username }}<b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -84,22 +79,16 @@
           @can('read users')
           <li><a href="{{ url('usuarios') }}"><i class="icon-group"></i><span>Gestión usuarios</span> </a></li>
           @endcan
+          @can('read restauracionDB')
           <li><a href=""><i class="icon-refresh"></i><span>Restauración DB</span> </a> </li>
+          @endcan
           @can('read bitacora')
           <li><a href="{{route('bitacora.user')}}"><i class="icon-calendar"></i><span>Bitacora</span> </a> </li>
           @endcan
+          @can('read etl')
           <li><a href="{{url('/etl')}}"><i class="icon-refresh"></i><span>ETL</span> </a> </li>
+          @endcan
 
-          <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-long-arrow-down"></i><span>Drops</span> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="icons.html">Icons</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="pricing.html">Pricing Plans</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="signup.html">Signup</a></li>
-              <li><a href="error.html">404</a></li>
-            </ul>
-          </li>
           @yield('opcionesmenu')
         </ul>
       </div>
@@ -118,22 +107,6 @@
   </div>
   <!-- /main -->
 
-  <div class="footer">
-    <div class="footer-inner">
-      <div class="container">
-        <div class="row">
-          <div class="span12"> &copy; 2020 <a href="#">Sistema Gerencial</a>. </div>
-          <!-- /span12 -->
-        </div>
-        <!-- /row -->
-      </div>
-      <!-- /container -->
-    </div>
-    <!-- /footer-inner -->
-  </div>
-  <!-- /footer -->
-  <!-- Le javascript
-================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{asset('js/jquery-1.7.2.min.js')}}"></script>
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
@@ -143,5 +116,5 @@
 <script src="{{asset('js/bootstrap.js')}}"></script>
 <script language="javascript" type="text/javascript" src="{{asset('js/full-calendar/fullcalendar.min.js')}}"></script>
 
-
+@yield('script')
 </html>
