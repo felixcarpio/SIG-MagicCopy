@@ -28,19 +28,12 @@ class ProductosActualesController extends Controller
 				$total = $total + $product->existencia_producto;
 			}
 		return $total;
-		//return array_sum($products->existencia_producto);
 	}
 
 	public function productos(){
 
 		$products = $this->productosAll();
-		//return var_dump($products);
 		$total = 0;
-		// if(!empty($products)){
-		// 	$total = $this->productosCount($products);
-		// }else{
-		// 	$products = '';
-		// }
 		$total = (!empty($products) ? $total = $this->productosCount($products) : $products = '');
 		$pdf = 1;
 		$fecha = Carbon::parse(Carbon::now())->format('d/m/Y');
@@ -52,11 +45,6 @@ class ProductosActualesController extends Controller
 	public function productosPdf(){
 		$products = $this->productosAll();
 		$total = 0;
-		// if(!empty($products)){
-		// 	$total = $this->productosCount($products);
-		// }else{
-		// 	$products = '';
-		// }
 		$total = (!empty($products) ? $total = $this->productosCount($products) : $products = '');
 		$fecha = Carbon::parse(Carbon::now())->format('d/m/Y');
 		$pdf = PDF::loadView('reportes.tacticos.pdf.productosActualesPDF',compact('products','total','fecha'));

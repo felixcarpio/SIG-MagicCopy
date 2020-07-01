@@ -35,7 +35,7 @@
 								<tr>
 									<td>{{$bitacora->usuario}}</td>
 									<td>{{$bitacora->nombre}}</td>
-									<td>{{$bitacora->fecha_acceso}}</td>
+									<td>{{date('d-M-y H:i:s',strtotime($bitacora->created_at)) }}</td>
 									<td>{{$bitacora->accion}}</td>
 								</tr>
 								@endforeach
