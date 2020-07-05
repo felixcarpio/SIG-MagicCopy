@@ -30,7 +30,6 @@ class GananciasController extends Controller
 		$ingreso = $datos[1];
 		$total = $datos[2];
 
-		//echo($desde);
 		return view('reportes.estrategicos.ganancias')->with(compact('fecha','pdf','desde','hasta','egreso','ingreso','total'));
 	}
 
@@ -55,9 +54,7 @@ class GananciasController extends Controller
         $egreso = $datos[0];
         $ingreso = $datos[1];
         $total = $datos[2];
-        //return var_dump($datos);
     	$this->bitacora_service->bitacoraPost("Preview generado de informe de anancias generadas");
-    	//return redirect()->route('ganancias.preview')->with(compact('success','fecha','pdf','desde','hasta','datos'));
         return view('reportes.estrategicos.ganancias')->with(compact('fecha','pdf','desde','hasta','egreso','ingreso','total'));
     }
 
@@ -84,11 +81,7 @@ class GananciasController extends Controller
     }
 
     public function gananciasPDF($desde,$hasta){
-        //return var_dump($global_desde);
-        //$desde= $this->global_desde;
-       // $hasta = $this->global_hasta;
         $datos = $this->ingresoEgresos($desde,$hasta);
-        //return var_dump($datos);
         $egreso = $datos[0];
         $ingreso = $datos[1];
         $total = $datos[2];
@@ -96,7 +89,6 @@ class GananciasController extends Controller
         $desde = Carbon::parse($desde)->format('d/m/Y');
         $hasta = Carbon::parse($hasta)->format('d/m/Y');
         $pdf = PDF::loadView('reportes.estrategicos.pdf.gananciasPDF',compact('ingreso','egreso','total','fecha','desde','hasta'));
-        //Llamando servicio de bitacora para crear registro
         $this->bitacora_service->bitacoraPost("PDF generado de informe de ganancias generadas");
         return $pdf->download('ganancias-generadas.pdf');
     }
