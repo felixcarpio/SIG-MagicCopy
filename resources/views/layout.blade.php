@@ -59,7 +59,7 @@
           @can('read rep-estrategico')
           <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-list-alt"></i><span>Reportes estrategicos</span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="icons.html">Comparar ventas</a></li>
+              <li><a href="{{url('/compararGanancia')}}">Comparar ventas</a></li>
               <li><a href="faq.html">Productos mas vendidos por categoria</a></li>
               <li><a href="">Productos menos vendidos por categoria</a></li>
               <li><a href="{{url('/ganancias')}}">Consolidado de ganancias</a></li>
@@ -92,8 +92,6 @@
           @yield('opcionesmenu')
         </ul>
       </div>
-    </div>  
-    <!-- /subnavbar-inner -->
   </div>
   <!-- /subnavbar -->
   <div class="main">

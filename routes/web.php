@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/ganancias_reporte','GananciasController@ganancias')->name('ganancias.periodo');
         Route::get('/ganancias_reporte_preview','GananciasController@gananciasPreview')->name('ganancias.preview');
         Route::get('/ganancias_reporte_pdf/{desde}/{hasta}','GananciasController@gananciasPDF')->name('ganancias.pdf');
+        
+        Route::view('/compararGanancia','reportes.estrategicos.compararGanancia')->name('compararGanancia');
+        Route::view('/mostrarComparativa','reportes.estrategicos.mostrarComparativa')->name('mostrarComparativa');
+        Route::post('/compararGanancia','ComparativaController@comp');
     });
 
     //incluir todas las direcciones de reportes tacticos
@@ -53,4 +57,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 });
+
+
+
+
 
