@@ -57,8 +57,8 @@
         <li class="active"><a href="{{url('/')}}"><i class="icon-home"></i><span>Inicio</span> </a> </li>
         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-list-alt"></i><span>Reportes estrategicos</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="icons.html">Comparar ventas</a></li>
-            <li><a href="faq.html">Productos mas vendidos por categoria</a></li>
+            <li><a href="{{url('/compararGanancia')}}">Comparar ventas</a></li>
+            <li><a href="{{url('/productoMasVendido')}}">Productos mas vendidos por categoria</a></li>
             <li><a href="">Productos menos vendidos por categoria</a></li>
             <li><a href="{{url('/ganancias')}}">Consolidado de ganancias</a></li>
           </ul>
