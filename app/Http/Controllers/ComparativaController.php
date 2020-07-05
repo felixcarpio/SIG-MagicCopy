@@ -94,7 +94,13 @@ class ComparativaController extends Controller
     
     public function comparativaPDF($fechaini,$fechafin,$producto){
         $datos = $this->generarComparativa($fechaini,$fechafin,$producto);
-        $pdf = PDF::loadView('reportes.estrategicos.pdf.comparativaPDF',compact('datos'));
+        //dd($producto);
+        $fecha = Carbon::parse(Carbon::now())->format('d/m/Y');
+        $fechaini = Carbon::parse($fechaini)->format('d/m/Y');
+        $fechafin = Carbon::parse($fechafin)->format('d/m/Y');
+
+        $pdf = PDF::loadView('reportes.estrategicos.pdf.comparativaPDF',compact('fecha',
+        'fechaini','fechafin','datos','producto'));
         return $pdf->download('comparativa-generada.pdf');
     }
 }

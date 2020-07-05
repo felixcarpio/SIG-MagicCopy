@@ -35,4 +35,5 @@ Route::get('/productos_actuales_pdf','ProductosActualesController@productosPdf')
 Route::get('/compararGanancia','ComparativaController@cargar')->name('compararGanancia.pantalla');
 Route::get('/compararGanancia_reporte','ComparativaController@comp')->name('compararGanancia.comp');
 Route::get('/compararGanancia_reporte_preview','ComparativaController@comparativaPreview')->name('compararGananacia.preview');
-Route::get('/compararGanancia_reporte_pdf/{fechaini}/{fechafin}/{producto}','ComparativaController@comparativaPDF')->name('compararGanancia.pdf');
+Route::get('/compararGanancia_reporte_pdf/{fechaini}/{fechafin}/{producto}',
+                            'ComparativaController@comparativaPDF')->name('compararGanancia.pdf');

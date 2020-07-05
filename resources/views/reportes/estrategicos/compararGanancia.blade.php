@@ -67,7 +67,7 @@ Comparativa de Ventas
 					@if($pdf == 0)
 					<button  disabled="" class="btn btn-danger">Imprimir PDF</button>
 					@else
-					<a href="{{route('compararGanancia.pdf',['fechaini'=>$fechaini,'fechafin'=>$fechafin,'producto'=>$producto])}}" class="btn btn-danger">Imprimir PDF</a>
+					<a href="{{route('compararGanancia.pdf',['fechaini'=>$fechaini,'fechafin'=>$fechafin,'producto'=>$producto->nombre])}}" class="btn btn-danger">Imprimir PDF</a>
 					@endif
 				</div>
                 <div class="span3">
