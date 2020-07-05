@@ -24,26 +24,24 @@ class ComparativaController extends Controller
         $pdf = 0;
         $fechaini = '';
         $fechafin = '';
+        $datos = array();
         return view('reportes.estrategicos.compararGanancia',compact('fecha','pdf','fechaini','fechafin',
-                        'productos'));
+                        'productos','datos'));
     }
 
     public function comparativaPreview()
     {
+        $productos = DB::table('tbl_producto')
+            ->select('nombre')
+            ->get();
         $fecha = session('fecha');
         $pdf = session('pdf');
         $fechaini = session('fechaini');
         $fechafin = session('fechafin');
         $datos = session('datos');
-        $fechaventa = $datos[0];
-        $preciounitario = $datos[1];
-        $unidades = $datos[2];
-        $subtotal = $datos[3];
-        $descuento = $datos[4];
-        $total = $datos[5];
 
         return view('reportes.estrategicos.compararGanancia')->with(compact('fecha','pdf','fechaini',
-        'fechafin','fechaventa','preciounitario','unidades','subtotal','descuento','total'));
+        'fechafin','datos','productos'));
     }
 
     public function comp(Request $request)
@@ -53,6 +51,10 @@ class ComparativaController extends Controller
             'fechafin' => 'required | after_or_equal:fechaini',
             'producto' => 'required'
         ]);
+
+        $productos = DB::table('tbl_producto')
+            ->select('nombre')
+            ->get();
 
         $fechaini = $request->input('fechaini');
         $fechafin = $request->input('fechafin');
@@ -69,32 +71,30 @@ class ComparativaController extends Controller
         $success = 'Comparación generada';
         $pdf = 1;
         $datos = $this->generarComparativa($fechaini,$fechafin,$producto);
-        $fechaventa = $datos[0];
-        $preciounitario = $datos[1];
-        $unidades = $datos[2];
-        $subtotal = $datos[3];
-        $descuento = $datos[4];
-        $total = $datos[5];
-
         return view('reportes.estrategicos.compararGanancia')->with(compact('fecha','pdf','fechaini',
-                    'fechafin','fechaventa','preciounitario','unidades','subtotal','descuento','total'));
+                    'fechafin','datos','productos'));
     }
 
     public function generarComparativa($fechaini,$fechafin,$producto)
     {
         $datos = array();
-        $ventas = DB::table('tbl_salida')
+        $datos = DB::table('tbl_salida')
         ->join('tbl_detalle','tbl_salida.id','tbl_detalle.salida_id')
         ->join('tbl_pedido','tbl_pedido.id','tbl_detalle.pedido_id')
         ->join('tbl_producto_pedido','tbl_producto_pedido.producto_id','tbl_pedido.id')
         ->join('tbl_producto','tbl_producto.id','tbl_producto_pedido.producto_id')
-        ->select('tbl_salida.fecha_emision','tbl_producto_pedido AS preciounitario',
+        ->select('tbl_salida.fecha_emision','tbl_producto_pedido.costo_unitario AS preciounitario',
         'tbl_detalle.cantidad_vendida AS unidades','tbl_detalle.total_detalle AS subtotal',
         'tbl_detalle.total_con_desc AS descuento','tbl_salida.total_iva')
         ->where('tbl_producto.nombre',$producto)
-        ->where('tbl_salida.fecha_emision',[$fechaini,$fechafin])
+        ->orwhere('tbl_salida.fecha_emision',[$fechaini,$fechafin])
         ->get()->toArray();
-        //dd($ventas);
         return $datos;
+    }
+    
+    public function comparativaPDF($fechaini,$fechafin,$producto){
+        $datos = $this->generarComparativa($fechaini,$fechafin,$producto);
+        $pdf = PDF::loadView('reportes.estrategicos.pdf.comparativaPDF',compact('datos'));
+        return $pdf->download('comparativa-generada.pdf');
     }
 }

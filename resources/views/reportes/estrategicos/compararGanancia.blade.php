@@ -18,7 +18,7 @@ Comparativa de Ventas
                     <center><h3>Unidad administrativa</h3></center>
                     <center><h3>Informe de comparación de ventas de producto</h3></center>
                 </div>
-                <div class="span12">
+                <div>
                     <h3>Fecha de generación: {{$fecha}}</h3>
                 </div>
                 @if ($message = Session::get('success'))
@@ -29,15 +29,11 @@ Comparativa de Ventas
                 @if ($errors->any())
 				<div class="alert alert-danger">
 					<strong>Error! </strong>Datos invalidos introducidos.<br><br>
-					<ul>
-						@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-						@endforeach
-					</ul>
+					La fecha inicial es mayor que la fecha final.
 				</div>
 				@endif
                 <div class="span12">
-                    <form action="{{route('compararGanancia.comp')}}" method="GET" form="comparativa">
+                    <form action="{{route('compararGanancia.comp')}}" method="GET" id="comparativa">
                         @csrf
                         <div class="span3">
                             <div class="form-group">
@@ -55,7 +51,7 @@ Comparativa de Ventas
                             <div class="form-group">
                                 <h3 style="display: inline-block; width: 120px">Produto: </h3>
                                 <select name="producto" class="custom-select" required>
-                                    <option selected="">Selecciona</option>
+                                    <option selected="" required></option>
                                     @foreach ($productos as $key => $producto)
                                         <option value="{{$producto->nombre}}">{{$producto->nombre}}</option>
                                     @endforeach
@@ -71,7 +67,7 @@ Comparativa de Ventas
 					@if($pdf == 0)
 					<button  disabled="" class="btn btn-danger">Imprimir PDF</button>
 					@else
-					<a href="{{route('ganancias.pdf',['fechaini'=>$fechaini,'fechafin'=>$fechafin])}}" class="btn btn-danger">Imprimir PDF</a>
+					<a href="{{route('compararGanancia.pdf',['fechaini'=>$fechaini,'fechafin'=>$fechafin,'producto'=>$producto])}}" class="btn btn-danger">Imprimir PDF</a>
 					@endif
 				</div>
                 <div class="span3">
@@ -92,7 +88,16 @@ Comparativa de Ventas
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @foreach ($datos as $key => $dato)
+                                <tr>
+                                    <td>{{date('d/m/Y', strtotime($dato->fecha_emision))}}</td>
+                                    <td>{{$dato->unidades}}</td>
+                                    <td>${{$dato->preciounitario}}</td>
+                                    <td>${{$dato->subtotal}}</td>
+                                    <td>${{$dato->descuento}}</td>
+                                    <td>${{$dato->total_iva}}</td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
