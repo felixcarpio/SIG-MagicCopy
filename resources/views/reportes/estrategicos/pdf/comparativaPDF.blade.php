@@ -61,7 +61,7 @@
                 <th width="15%">Cantidad unidades</th>
                 <th width="15%">P/U</th>
                 <th width="10%">Subtotal</th>
-                <th width="20%">Descuento</th>
+                <th width="20%">Subtotal con Descuento</th>
                 <th width="20%">Total</th>
 			</tr>
 		</thead>

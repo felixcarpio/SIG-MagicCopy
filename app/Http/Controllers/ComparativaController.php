@@ -10,11 +10,18 @@ use App\Pedidos;
 use App\Detalles;
 use App\Salidas;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Http\Services\BitacoraService;
 use Carbon\Carbon;
 
 class ComparativaController extends Controller
 {
     //
+
+    public function __construct(BitacoraService $bitacora_service)
+    {
+        $this->bitacora_service = $bitacora_service;
+    }
+
     public function cargar()
     {
         $productos = DB::table('tbl_producto')
@@ -51,26 +58,23 @@ class ComparativaController extends Controller
             'fechafin' => 'required | after_or_equal:fechaini',
             'producto' => 'required'
         ]);
-
         $productos = DB::table('tbl_producto')
             ->select('nombre')
             ->get();
-
         $fechaini = $request->input('fechaini');
         $fechafin = $request->input('fechafin');
         $producto = $request->input('producto');
-
         if($fechaini > $fechafin){
             $fechaini='';
             $fechafin='';
             return redirect()->route('compararGanancia.pantalla')->withErrors(['La fecha inicial es mayor 
                         que la fecha final.']);
         }
-
         $fecha = Carbon::parse(Carbon::now())->format('d/m/Y');
         $success = 'Comparación generada';
         $pdf = 1;
         $datos = $this->generarComparativa($fechaini,$fechafin,$producto);
+        $this->bitacora_service->bitacoraPost("Preview generado de informe de comparación de ventas de producto");
         return view('reportes.estrategicos.compararGanancia')->with(compact('fecha','pdf','fechaini',
                     'fechafin','datos','productos'));
     }
@@ -101,6 +105,7 @@ class ComparativaController extends Controller
 
         $pdf = PDF::loadView('reportes.estrategicos.pdf.comparativaPDF',compact('fecha',
         'fechaini','fechafin','datos','producto'));
+        $this->bitacora_service->bitacoraPost("PDF generado de informe de comparación de ventas de producto");
         return $pdf->download('comparativa-generada.pdf');
     }
 }
